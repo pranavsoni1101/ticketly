@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google"
 import Provider from "./provider"
+import Layout from "./components/Layout"
+import { ColorModeProvider } from "../components/ui/color-mode"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,10 +14,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html suppressHydrationWarning>
+    <html className={inter.className} suppressHydrationWarning>
       <head />
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Layout>
+            <ColorModeProvider>
+              {children}
+            </ColorModeProvider>
+          </Layout>
+        </Provider>
       </body>
     </html>
   )
